@@ -17,15 +17,19 @@
 #include <iostream>
 #include <sstream>
 
-/* ---- Student-specific constant ------------------------------------------
- * Roll number 0625  ->  N = 625
- * Minimum visible characters in a string = N mod 5 + 1 = 1
- * ------------------------------------------------------------------------- */
-static const int ROLL_N             = 625;
-static const int MIN_STRING_VISIBLE = ROLL_N % 5 + 1;
+/* ---- Student-specific constant ----------------------------------------
+ * First name "Ali" -> N = 3 alphabetic characters
+ * MIN_STRING_VISIBLE = N mod 5 + 1 = 4
+ * ----------------------------------------------------------------------- */
+static const int N_LETTERS          = 3;                      /* "Ali" */
+static const int MIN_STRING_VISIBLE = N_LETTERS % 5 + 1;      /* = 4   */
 
 static int tokenCount = 0;
 static int errorCount = 0;
+
+/* Token summary counters (section 10 of the project spec) */
+static int cntKeyword = 0, cntIdent = 0, cntNumber = 0, cntString = 0;
+static int cntBool    = 0, cntOp    = 0, cntPunct = 0, cntComment = 0;
 
 /* Helpers defined in the user-code section at the bottom */
 void emitToken(const std::string& type, const std::string& lexeme);
@@ -46,14 +50,15 @@ ALNUM   [A-Za-z0-9]
     /* ------------------------------------------------------------------
      * Whitespace and line tracking
      * ------------------------------------------------------------------ */
-[ \t\r]+                 { /* skip blanks */ }
+[ \t\r\f\v]+             { /* skip blanks */ }
 \n                       { /* yylineno is incremented automatically */ }
 
     /* ------------------------------------------------------------------
-     * Comments: // (standard) and ## (personalized). Both are skipped.
+     * Comments: // (standard) and ## (personalized, V = 2 is even).
+     * Both are skipped as tokens but counted in the summary.
      * ------------------------------------------------------------------ */
-"//"[^\n]*               { /* single-line comment */ }
-"##"[^\n]*               { /* personalized comment */ }
+"//"[^\n]*               { ++cntComment; }
+"##"[^\n]*               { ++cntComment; }
 
     /* ------------------------------------------------------------------
      * Punctuation (5 symbols): ( ) { } ;
@@ -74,20 +79,21 @@ ALNUM   [A-Za-z0-9]
 "(-_-)"                  { emitToken("MUL_OP", yytext); }
 "(^_-)"                  { emitToken("POW_OP", yytext); }
 
-    /* Incomplete / invalid custom operators (longest match keeps the
-       full forms above when they are complete) */
+    /* Incomplete custom operators. Longest match keeps the complete
+       forms above when they are present. */
 "(-"("_"("-")?)?         { emitError("Incomplete or invalid custom operator", yytext); }
 "(^"("_"("-")?)?         { emitError("Incomplete or invalid custom operator", yytext); }
 
     /* ------------------------------------------------------------------
-     * Keywords - Category 1: C / C++ / English
+     * Keywords - Category 1: C / C++ / English (8)
      * ------------------------------------------------------------------ */
 "while"|"return"|"int"|"break"|"const"|"for"|"switch"|"char" { emitToken("C_KEYWORD", yytext); }
 
-    /* Keywords - Category 2: Roman Urdu / Urdu-inspired */
+    /* Keywords - Category 2: Roman Urdu / Urdu-inspired (4) */
 "sainsiAdad"|"shart"|"dussriShart"|"zahirKro" { emitToken("URDU_KEYWORD", yytext); }
 
-    /* Keywords - Category 3: Personalized */
+    /* Keywords - Category 3: Personalized (4).
+       "ali$" and "#0625" contain permitted symbols. */
 "ali"|"ali$"|"L1F23"|"#0625" { emitToken("PERSONAL_KEYWORD", yytext); }
 
     /* ------------------------------------------------------------------
@@ -100,8 +106,9 @@ ALNUM   [A-Za-z0-9]
 
     /* ------------------------------------------------------------------
      * Numbers
-     *   Scientific : 1.25e+4, 25e4          (mantissa, then e/E, sign, digits)
-     *   Integer    : 25                     (decimal digits only)
+     *   Scientific : 1.25e+4, 25e4        (mantissa, e/E, optional sign, digits)
+     *   Integer    : 25                   (decimal digits only)
+     * Valid rules come first, so they win when match lengths are equal.
      * ------------------------------------------------------------------ */
 {DIGIT}+("."{DIGIT}+)?[eE][+-]?{DIGIT}+ {
         double v = std::strtod(yytext, NULL);
@@ -115,12 +122,10 @@ ALNUM   [A-Za-z0-9]
         emitToken("INTEGER", yytext, "Value=" + std::to_string(v));
     }
 
-    /* Malformed numbers: digits immediately followed by letters/underscore
-       (e.g. 0xG5, 12abc), a decimal fraction with no exponent (1.25),
-       or an incomplete exponent (25e, 25e+). */
-{DIGIT}+({ALPHA}|_)({ALPHA}|{DIGIT}|_)*  { emitError("Malformed Number", yytext); }
-{DIGIT}+"."{DIGIT}*                      { emitError("Malformed Number", yytext); }
-{DIGIT}+("."{DIGIT}*)?[eE][+-]?          { emitError("Malformed Number", yytext); }
+    /* Malformed numbers: any digit-led run that is not a valid INTEGER or
+       SCIENTIFIC literal. Catches 0xG5, 0b1021, 12abc, 1.25, 1.2e+,
+       25e+4x and 45..7 as one error each. */
+{DIGIT}({ALNUM}|[_.]|[eE][+-])*   { emitError("Malformed Number", yytext); }
 
     /* ------------------------------------------------------------------
      * Identifiers: must begin with "_i" (underscore + last letter of
@@ -145,7 +150,7 @@ ALNUM   [A-Za-z0-9]
 
     /* ------------------------------------------------------------------
      * Any other word-like lexeme is not a valid identifier (identifiers
-     * must start with "_i"), and not a keyword/constant (matched above).
+     * must start with "_i") and not a keyword or constant (matched above).
      * ------------------------------------------------------------------ */
 (_|{ALPHA})({ALPHA}|{DIGIT}|_)*  { emitError("Invalid identifier pattern", yytext); }
 
@@ -179,15 +184,38 @@ static char decodeEscape(char c)
     }
 }
 
+/* Maps a token type to its summary category */
+static void countToken(const std::string& type)
+{
+    if (type == "C_KEYWORD" || type == "URDU_KEYWORD" || type == "PERSONAL_KEYWORD")
+        ++cntKeyword;
+    else if (type == "IDENTIFIER")
+        ++cntIdent;
+    else if (type == "INTEGER" || type == "SCIENTIFIC")
+        ++cntNumber;
+    else if (type == "STRING" || type == "CHAR")
+        ++cntString;
+    else if (type == "BOOLEAN_TRUE" || type == "BOOLEAN_FALSE" ||
+             type == "POSITIVE_INFINITY" || type == "NEGATIVE_INFINITY")
+        ++cntBool;
+    else if (type == "ARITH_OP" || type == "REL_OP" || type == "ASSIGN_OP" ||
+             type == "MUL_OP" || type == "POW_OP")
+        ++cntOp;
+    else if (type == "PUNCTUATION")
+        ++cntPunct;
+}
+
 void emitToken(const std::string& type, const std::string& lexeme)
 {
     ++tokenCount;
+    countToken(type);
     std::cout << "Line " << yylineno << ": " << type << " -> " << lexeme << "\n";
 }
 
 void emitToken(const std::string& type, const std::string& lexeme, const std::string& attr)
 {
     ++tokenCount;
+    countToken(type);
     std::cout << "Line " << yylineno << ": " << type << " -> " << lexeme
               << " [" << attr << "]\n";
 }
@@ -222,7 +250,7 @@ void handleString(const char* text, int len)
 
     if (visible < MIN_STRING_VISIBLE) {
         emitError("String too short (min " + std::to_string(MIN_STRING_VISIBLE) +
-                  " visible character)", full);
+                  " visible characters)", full);
         return;
     }
 
@@ -281,6 +309,16 @@ int main(int argc, char* argv[])
 
     std::cout << "--------------------------------------------------\n";
     std::cout << "Total tokens: " << tokenCount
-              << "   Total errors: " << errorCount << "\n";
+              << "   Total errors: " << errorCount << "\n\n";
+    std::cout << "========== Token Summary ==========\n";
+    std::cout << "Keywords              : " << cntKeyword << "\n";
+    std::cout << "Identifiers           : " << cntIdent   << "\n";
+    std::cout << "Numeric literals      : " << cntNumber  << "\n";
+    std::cout << "String/char literals  : " << cntString  << "\n";
+    std::cout << "Boolean/constants     : " << cntBool    << "\n";
+    std::cout << "Operators             : " << cntOp      << "\n";
+    std::cout << "Punctuations          : " << cntPunct   << "\n";
+    std::cout << "Comments ignored      : " << cntComment << "\n";
+    std::cout << "Lexical errors        : " << errorCount << "\n";
     return 0;
 }
