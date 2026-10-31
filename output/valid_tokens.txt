@@ -1,0 +1,253 @@
+Compiler Construction | Project Phase 1
+Student: Ali Akhtar (L1F23BSCS0625)
+--------------------------------------------------
+Line 4: C_KEYWORD -> int
+Line 4: IDENTIFIER -> _istudents [Length=10]
+Line 4: ASSIGN_OP -> =
+Line 4: INTEGER -> 25 [Value=25]
+Line 4: PUNCTUATION -> ;
+Line 5: C_KEYWORD -> int
+Line 5: IDENTIFIER -> _ipresent [Length=9]
+Line 5: ASSIGN_OP -> =
+Line 5: INTEGER -> 22 [Value=22]
+Line 5: PUNCTUATION -> ;
+Line 6: C_KEYWORD -> int
+Line 6: IDENTIFIER -> _iabsent [Length=8]
+Line 6: ASSIGN_OP -> =
+Line 6: INTEGER -> 3 [Value=3]
+Line 6: PUNCTUATION -> ;
+Line 7: C_KEYWORD -> const
+Line 7: C_KEYWORD -> int
+Line 7: IDENTIFIER -> _ipassMark [Length=10]
+Line 7: ASSIGN_OP -> =
+Line 7: INTEGER -> 50 [Value=50]
+Line 7: PUNCTUATION -> ;
+Line 8: C_KEYWORD -> char
+Line 8: IDENTIFIER -> _igrade [Length=7]
+Line 8: ASSIGN_OP -> =
+Line 8: CHAR -> 'A' [Value=65]
+Line 8: PUNCTUATION -> ;
+Line 9: C_KEYWORD -> int
+Line 9: IDENTIFIER -> _itotal [Length=7]
+Line 9: ASSIGN_OP -> =
+Line 9: INTEGER -> 0 [Value=0]
+Line 9: PUNCTUATION -> ;
+Line 10: C_KEYWORD -> int
+Line 10: IDENTIFIER -> _icounter [Length=9]
+Line 10: ASSIGN_OP -> =
+Line 10: INTEGER -> 1 [Value=1]
+Line 10: PUNCTUATION -> ;
+Line 11: C_KEYWORD -> int
+Line 11: IDENTIFIER -> _isquare [Length=8]
+Line 11: ASSIGN_OP -> =
+Line 11: INTEGER -> 4 [Value=4]
+Line 11: PUNCTUATION -> ;
+Line 12: C_KEYWORD -> int
+Line 12: IDENTIFIER -> _iscientificDemo [Length=16]
+Line 12: ASSIGN_OP -> =
+Line 12: SCIENTIFIC -> 12e3 [Value=12000]
+Line 12: PUNCTUATION -> ;
+Line 13: C_KEYWORD -> int
+Line 13: IDENTIFIER -> _imaximum [Length=9]
+Line 13: ASSIGN_OP -> =
+Line 13: POSITIVE_INFINITY -> POS_INF
+Line 13: PUNCTUATION -> ;
+Line 14: C_KEYWORD -> int
+Line 14: IDENTIFIER -> _iminimum [Length=9]
+Line 14: ASSIGN_OP -> =
+Line 14: NEGATIVE_INFINITY -> NEG_INF
+Line 14: PUNCTUATION -> ;
+Line 15: C_KEYWORD -> int
+Line 15: IDENTIFIER -> _iresult [Length=8]
+Line 15: ASSIGN_OP -> =
+Line 15: INTEGER -> 0 [Value=0]
+Line 15: PUNCTUATION -> ;
+Line 16: C_KEYWORD -> int
+Line 16: IDENTIFIER -> _istatus [Length=8]
+Line 16: ASSIGN_OP -> =
+Line 16: INTEGER -> 1 [Value=1]
+Line 16: PUNCTUATION -> ;
+Line 17: C_KEYWORD -> int
+Line 17: IDENTIFIER -> _iprocessed [Length=11]
+Line 17: ASSIGN_OP -> =
+Line 17: INTEGER -> 0 [Value=0]
+Line 17: PUNCTUATION -> ;
+Line 19: PERSONAL_KEYWORD -> ali
+Line 20: PERSONAL_KEYWORD -> L1F23
+Line 21: PERSONAL_KEYWORD -> #0625
+Line 22: PERSONAL_KEYWORD -> ali$
+Line 24: URDU_KEYWORD -> zahirKro
+Line 24: PUNCTUATION -> (
+Line 24: STRING -> "Student attendance and result report" [Length=36]
+Line 24: PUNCTUATION -> )
+Line 24: PUNCTUATION -> {
+Line 25: URDU_KEYWORD -> zahirKro
+Line 25: PUNCTUATION -> (
+Line 25: STRING -> "Checking attendance" [Length=19]
+Line 25: PUNCTUATION -> )
+Line 25: PUNCTUATION -> ;
+Line 26: URDU_KEYWORD -> shart
+Line 26: PUNCTUATION -> (
+Line 26: IDENTIFIER -> _ipresent [Length=9]
+Line 26: REL_OP -> :)
+Line 26: INTEGER -> 20 [Value=20]
+Line 26: PUNCTUATION -> )
+Line 26: PUNCTUATION -> {
+Line 27: URDU_KEYWORD -> zahirKro
+Line 27: PUNCTUATION -> (
+Line 27: STRING -> "Attendance is sufficient" [Length=24]
+Line 27: PUNCTUATION -> )
+Line 27: PUNCTUATION -> ;
+Line 28: PUNCTUATION -> }
+Line 29: URDU_KEYWORD -> dussriShart
+Line 29: PUNCTUATION -> (
+Line 29: IDENTIFIER -> _iabsent [Length=8]
+Line 29: REL_OP -> :)
+Line 29: INTEGER -> 5 [Value=5]
+Line 29: PUNCTUATION -> )
+Line 29: PUNCTUATION -> {
+Line 30: URDU_KEYWORD -> zahirKro
+Line 30: PUNCTUATION -> (
+Line 30: STRING -> "Warning: many absences" [Length=22]
+Line 30: PUNCTUATION -> )
+Line 30: PUNCTUATION -> ;
+Line 31: PUNCTUATION -> }
+Line 33: URDU_KEYWORD -> shart
+Line 33: PUNCTUATION -> (
+Line 33: BOOLEAN_TRUE -> TheekHai
+Line 33: PUNCTUATION -> )
+Line 33: PUNCTUATION -> {
+Line 34: IDENTIFIER -> _iresult [Length=8]
+Line 34: ASSIGN_OP -> =
+Line 34: IDENTIFIER -> _ipresent [Length=9]
+Line 34: ARITH_OP -> +
+Line 34: IDENTIFIER -> _iabsent [Length=8]
+Line 34: PUNCTUATION -> ;
+Line 35: PUNCTUATION -> }
+Line 36: URDU_KEYWORD -> dussriShart
+Line 36: PUNCTUATION -> (
+Line 36: BOOLEAN_FALSE -> NahiTheek
+Line 36: PUNCTUATION -> )
+Line 36: PUNCTUATION -> {
+Line 37: IDENTIFIER -> _iresult [Length=8]
+Line 37: ASSIGN_OP -> =
+Line 37: INTEGER -> 0 [Value=0]
+Line 37: PUNCTUATION -> ;
+Line 38: PUNCTUATION -> }
+Line 40: C_KEYWORD -> for
+Line 40: PUNCTUATION -> (
+Line 40: IDENTIFIER -> _icounter [Length=9]
+Line 40: ASSIGN_OP -> =
+Line 40: INTEGER -> 1 [Value=1]
+Line 40: PUNCTUATION -> ;
+Line 40: IDENTIFIER -> _icounter [Length=9]
+Line 40: REL_OP -> :)
+Line 40: INTEGER -> 5 [Value=5]
+Line 40: PUNCTUATION -> ;
+Line 40: IDENTIFIER -> _icounter [Length=9]
+Line 40: ASSIGN_OP -> =
+Line 40: IDENTIFIER -> _icounter [Length=9]
+Line 40: ARITH_OP -> +
+Line 40: INTEGER -> 1 [Value=1]
+Line 40: PUNCTUATION -> )
+Line 40: PUNCTUATION -> {
+Line 41: IDENTIFIER -> _itotal [Length=7]
+Line 41: ASSIGN_OP -> =
+Line 41: IDENTIFIER -> _itotal [Length=7]
+Line 41: ARITH_OP -> +
+Line 41: IDENTIFIER -> _icounter [Length=9]
+Line 41: PUNCTUATION -> ;
+Line 42: PUNCTUATION -> }
+Line 44: C_KEYWORD -> while
+Line 44: PUNCTUATION -> (
+Line 44: IDENTIFIER -> _iprocessed [Length=11]
+Line 44: REL_OP -> :)
+Line 44: INTEGER -> 2 [Value=2]
+Line 44: PUNCTUATION -> )
+Line 44: PUNCTUATION -> {
+Line 45: IDENTIFIER -> _iprocessed [Length=11]
+Line 45: ASSIGN_OP -> =
+Line 45: IDENTIFIER -> _iprocessed [Length=11]
+Line 45: ARITH_OP -> +
+Line 45: INTEGER -> 1 [Value=1]
+Line 45: PUNCTUATION -> ;
+Line 46: PUNCTUATION -> }
+Line 48: IDENTIFIER -> _isquare [Length=8]
+Line 48: ASSIGN_OP -> =
+Line 48: INTEGER -> 2 [Value=2]
+Line 48: MUL_OP -> (-_-)
+Line 48: INTEGER -> 3 [Value=3]
+Line 48: PUNCTUATION -> ;
+Line 49: IDENTIFIER -> _imaximum [Length=9]
+Line 49: ASSIGN_OP -> =
+Line 49: INTEGER -> 2 [Value=2]
+Line 49: POW_OP -> (^_-)
+Line 49: INTEGER -> 3 [Value=3]
+Line 49: PUNCTUATION -> ;
+Line 50: IDENTIFIER -> _igrade [Length=7]
+Line 50: ASSIGN_OP -> =
+Line 50: CHAR -> 'B' [Value=66]
+Line 50: PUNCTUATION -> ;
+Line 51: URDU_KEYWORD -> zahirKro
+Line 51: PUNCTUATION -> (
+Line 51: STRING -> "Total attendance count:" [Length=23]
+Line 51: PUNCTUATION -> )
+Line 51: PUNCTUATION -> ;
+Line 52: URDU_KEYWORD -> zahirKro
+Line 52: PUNCTUATION -> (
+Line 52: IDENTIFIER -> _iresult [Length=8]
+Line 52: PUNCTUATION -> )
+Line 52: PUNCTUATION -> ;
+Line 53: URDU_KEYWORD -> zahirKro
+Line 53: PUNCTUATION -> (
+Line 53: STRING -> "Loop total:" [Length=11]
+Line 53: PUNCTUATION -> )
+Line 53: PUNCTUATION -> ;
+Line 54: URDU_KEYWORD -> zahirKro
+Line 54: PUNCTUATION -> (
+Line 54: IDENTIFIER -> _itotal [Length=7]
+Line 54: PUNCTUATION -> )
+Line 54: PUNCTUATION -> ;
+Line 55: URDU_KEYWORD -> zahirKro
+Line 55: PUNCTUATION -> (
+Line 55: STRING -> "Scientific number:" [Length=18]
+Line 55: PUNCTUATION -> )
+Line 55: PUNCTUATION -> ;
+Line 56: URDU_KEYWORD -> zahirKro
+Line 56: PUNCTUATION -> (
+Line 56: IDENTIFIER -> _iscientificDemo [Length=16]
+Line 56: PUNCTUATION -> )
+Line 56: PUNCTUATION -> ;
+Line 57: C_KEYWORD -> return
+Line 57: IDENTIFIER -> _iresult [Length=8]
+Line 57: PUNCTUATION -> ;
+Line 58: PUNCTUATION -> }
+Line 60: C_KEYWORD -> int
+Line 60: IDENTIFIER -> _ifinalValue [Length=12]
+Line 60: ASSIGN_OP -> =
+Line 60: INTEGER -> 100 [Value=100]
+Line 60: PUNCTUATION -> ;
+Line 61: C_KEYWORD -> break
+Line 61: PUNCTUATION -> ;
+Line 62: C_KEYWORD -> switch
+Line 62: PUNCTUATION -> (
+Line 62: IDENTIFIER -> _ifinalValue [Length=12]
+Line 62: PUNCTUATION -> )
+Line 62: PUNCTUATION -> {
+Line 63: URDU_KEYWORD -> zahirKro
+Line 63: PUNCTUATION -> (
+Line 63: STRING -> "Final value checked" [Length=19]
+Line 63: PUNCTUATION -> )
+Line 63: PUNCTUATION -> ;
+Line 64: C_KEYWORD -> break
+Line 64: PUNCTUATION -> ;
+Line 65: PUNCTUATION -> }
+Line 68: ASSIGN_OP -> =
+Line 68: INTEGER -> 10 [Value=10]
+Line 68: PUNCTUATION -> ;
+Line 71: C_KEYWORD -> int
+Line 71: IDENTIFIER -> _ibadNumber [Length=11]
+Line 71: ASSIGN_OP -> =
+Line 71: PUNCTUATION -> ;
+--------------------------------------------------
+Total tokens: 248   Total errors: 2

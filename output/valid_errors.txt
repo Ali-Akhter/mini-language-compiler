@@ -1,0 +1,2 @@
+Line 68: ERROR -> Invalid identifier pattern "studentCount"
+Line 71: ERROR -> Malformed Number "12e+"

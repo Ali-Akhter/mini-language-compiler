@@ -1,0 +1,16 @@
+## invalid_test.txt
+## Each case is intended to trigger a lexical error in scanner.l.
+
+studentCount
+bad_name
+12abc
+0xG5
+1.25
+25e
+25e+
+"unterminated string
+'AB'
+"bad\qescape"
+(-_
+(^_
+@

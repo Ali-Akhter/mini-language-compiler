@@ -1,0 +1,71 @@
+## Mini program: personalized student result and inventory tracker
+## Valid language constructs are written using scanner.l token rules.
+
+int _istudents = 25;
+int _ipresent = 22;
+int _iabsent = 3;
+const int _ipassMark = 50;
+char _igrade = 'A';
+int _itotal = 0;
+int _icounter = 1;
+int _isquare = 4;
+int _iscientificDemo = 12e3;
+int _imaximum = POS_INF;
+int _iminimum = NEG_INF;
+int _iresult = 0;
+int _istatus = 1;
+int _iprocessed = 0;
+
+ali
+L1F23
+#0625
+ali$
+
+zahirKro("Student attendance and result report") {
+    zahirKro("Checking attendance");
+    shart (_ipresent :) 20) {
+        zahirKro("Attendance is sufficient");
+    }
+    dussriShart (_iabsent :) 5) {
+        zahirKro("Warning: many absences");
+    }
+
+    shart (TheekHai) {
+        _iresult = _ipresent + _iabsent;
+    }
+    dussriShart (NahiTheek) {
+        _iresult = 0;
+    }
+
+    for (_icounter = 1; _icounter :) 5; _icounter = _icounter + 1) {
+        _itotal = _itotal + _icounter;
+    }
+
+    while (_iprocessed :) 2) {
+        _iprocessed = _iprocessed + 1;
+    }
+
+    _isquare = 2 (-_-) 3;
+    _imaximum = 2 (^_-) 3;
+    _igrade = 'B';
+    zahirKro("Total attendance count:");
+    zahirKro(_iresult);
+    zahirKro("Loop total:");
+    zahirKro(_itotal);
+    zahirKro("Scientific number:");
+    zahirKro(_iscientificDemo);
+    return _iresult;
+}
+
+int _ifinalValue = 100;
+break;
+switch (_ifinalValue) {
+    zahirKro("Final value checked");
+    break;
+}
+
+## Intentional lexical error 1: identifier does not start with _i
+studentCount = 10;
+
+## Intentional lexical error 2: malformed scientific number
+int _ibadNumber = 12e+;
